@@ -27,7 +27,7 @@ from monitoring.views import get_user_data_monitoring_status
 from utils.views import get_live_chart_data
 import pytz
 from action.models import ActionField
-
+from django.urls import reverse_lazy
 
 logger = logging.getLogger('dataglen.views')
 logger.setLevel(logging.DEBUG)

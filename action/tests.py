@@ -8,13 +8,13 @@ from rest_framework import status
 from rest_framework import permissions
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.test import APIRequestFactory
-from django.core.urlresolvers import reverse
+from django.urls import reverse_lazy
 from rest_framework import status
 from rest_framework.test import APITestCase
 from django.test import Client
 import unittest
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.urls import reverse_lazy
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
 import json

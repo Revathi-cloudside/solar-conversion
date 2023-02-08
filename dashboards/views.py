@@ -1,7 +1,7 @@
 from django.views.generic.base import View, TemplateView
 from django.views.generic.edit import CreateView, FormView, UpdateView
 from django.shortcuts import redirect
-# from django.core.urlresolvers import reverse
+# from django.urls import reverse_lazy
 from django.urls import reverse
 from kutbill import settings2
 from .mixins import EntryPointMixin, ContextDataMixin

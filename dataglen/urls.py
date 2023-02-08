@@ -5,7 +5,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from django.views.generic import TemplateView
 
 from dataglen import views
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from dashboards.views import OrganizationEmployeeCreate, DataglenGroupCreate, GroupMemberCreate, \
     DataglenGroupUpdate
 

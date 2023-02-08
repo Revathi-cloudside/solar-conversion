@@ -30,7 +30,11 @@ urlpatterns = [
     path('dashboards/', include('dashboards.urls', namespace='dashboards')),  
     path('accounts/', include('allauth.urls')),
     path('invitations/', include(invitation_backend().get_urls())),  
-    # path('dataglen/', include('config.urls', namespace="config")),
-    # path('dataglen/', include('action.urls', namespace="action")),
+    path('dataglen/', include('config.urls', namespace="config")),
+    path('dataglen/', include('action.urls', namespace="action")),
+    path('dataglen/', include('errors.urls', namespace="errors")),
+    path('dataglen/', include('dataglen.urls', namespace="dataglen")),
+    path('events/', include('events.urls', namespace="events")),
+    
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

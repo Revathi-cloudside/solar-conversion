@@ -63,19 +63,22 @@ INSTALLED_APPS = [
     'website',
     'dashboards',
     'dataglen',
+    'cronjobs',
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'django_comments',
     'guardian',
     'action',
     # 'actionconfig',
-    'cronjobs',
     'config',
     'errors',
     'monitoring',
     'logger',
     'solarrms',
     'tagging',
+    'customwidgets',
+    'helpdesk',
+    'events',
 ]
 
 # INSTALLED_APPS = ('django_cassandra_engine',) + INSTALLED_APPS
@@ -106,7 +109,7 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = (True)
 ACCOUNT_SESSION_COOKIE_AGE = (1209600)
 
 
-# ACCOUNT_SIGNUP_FORM_CLASS = 'dataglen.forms.SignupForm'
+ACCOUNT_SIGNUP_FORM_CLASS = 'dataglen.forms.SignupForm'
 
 RECAPTCHA_PUBLIC_KEY = '6Ld39wUTAAAAAPejEbOFj0VLQfGPsDtEK9kc7moD'
 RECAPTCHA_PRIVATE_KEY = '6Ld39wUTAAAAAFmX1FDfxIfhRdLOHWmTwJsojh6l'
@@ -163,7 +166,7 @@ AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-# INVITATION_BACKEND = 'dashboards.defaults.DataglenInvitationBackend'
+INVITATION_BACKEND = 'dashboards.defaults.DataglenInvitationBackend'
 
 SITE_ID = 1
 
@@ -488,6 +491,7 @@ if CASSANDRA_UPDATE:
 
 DG_CELERY_TASK_PATH = ('solarrms.cron_new_tickets.new_solar_events_check_for_a_plant', )
 AJB_TEMPLATE = 'AJB_TEMPLATE'
+ENERGY_METER_TEMPLATE = 'ENERGY_METER_TEMPLATE'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
