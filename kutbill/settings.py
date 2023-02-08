@@ -83,6 +83,7 @@ INSTALLED_APPS = [
     'license',
     'microgrid',
     'oandmmanager',
+    'otp',
 ]
 
 # INSTALLED_APPS = ('django_cassandra_engine',) + INSTALLED_APPS
@@ -501,7 +502,10 @@ ENERGY_METER_TEMPLATE = 'ENERGY_METER_TEMPLATE'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-# MIDDLEWARE = [
-#     'common.middleware.AjaxMiddleware', 
-# ]
+#Solutions Infini details
+SMS_KEY = 'A7c038153c8d4455a8cfad37d44a025dd'
+if CASSANDRA_UPDATE:
+    #TODO change KEY as previous once google server is live
+    SMS_KEY = 'A7c038153c8d4455a8cfad37d44a025dd'
+SMS_SENDER = 'DGTECH'
+SMS_URL = 'http://api-alerts.solutionsinfini.com/v3/'
