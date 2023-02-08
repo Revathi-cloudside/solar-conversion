@@ -80,7 +80,8 @@ INSTALLED_APPS = [
     'helpdesk',
     'events',
     'ioelab',
-    'license'
+    'license',
+    'microgrid',
 ]
 
 # INSTALLED_APPS = ('django_cassandra_engine',) + INSTALLED_APPS
