@@ -35,6 +35,7 @@ urlpatterns = [
     path('dataglen/', include('errors.urls', namespace="errors")),
     path('dataglen/', include('dataglen.urls', namespace="dataglen")),
     path('events/', include('events.urls', namespace="events")),
+    path('ioelab/', include('ioelab.urls', namespace="ioelab")),
     
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

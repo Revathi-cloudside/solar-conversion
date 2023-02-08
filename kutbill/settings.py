@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     'customwidgets',
     'helpdesk',
     'events',
+    'ioelab',
 ]
 
 # INSTALLED_APPS = ('django_cassandra_engine',) + INSTALLED_APPS
@@ -496,3 +497,8 @@ ENERGY_METER_TEMPLATE = 'ENERGY_METER_TEMPLATE'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# MIDDLEWARE = [
+#     'common.middleware.AjaxMiddleware', 
+# ]

@@ -39,9 +39,11 @@ class DashboardData(EntryPointMixin, AddSensorsMixin,
     json_include = ['sources_len', 'valid_records', 'invalid_records',
                     'live_data_chart',
                     'stable', 'errors', 'warnings', 'unmonitored']
+    def is_ajax(request):
+        return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
     def get(self, request, *args, **kwargs):
-        if self.request.is_ajax() is False:
+        if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest' is False:
             return self.render_to_response(self.get_context_data())
         else:
             context = self.get_context_data()
@@ -89,11 +91,11 @@ class DashboardData(EntryPointMixin, AddSensorsMixin,
         context['errors'] = errors_len
         context['unmonitored'] = unmonitored_len
 
-        if self.request.is_ajax():
+        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             context['live_data_chart'] = get_live_chart_data([source.sourceKey for source in self.sources])
         return context
 
-
+    
 class SourceData(EntryPointMixin, AddSensorsMixin,
                  JSONResponseMixin, TemplateView):
     template_name = "dataglen/source_profile.html"
