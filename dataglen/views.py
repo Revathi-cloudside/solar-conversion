@@ -160,7 +160,7 @@ class SourceData(EntryPointMixin, AddSensorsMixin,
         context['config_streams'] = config_streams
         context['error_streams'] = error_streams
 
-        if self.request.is_ajax():
+        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             context['live_data_chart'] = get_live_chart_data([source.sourceKey])
 
         return context
