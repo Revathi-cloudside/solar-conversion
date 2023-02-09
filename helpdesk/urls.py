@@ -13,7 +13,7 @@ if django.get_version().startswith("1.3"):
 	# from django.conf.urls.defaults import *
     from django.urls import *
 else:
-	from django.conf.urls import *
+    from django.urls import path, include, re_path
 from django.contrib.auth.decorators import login_required
 
 from helpdesk import settings as helpdesk_settings
@@ -190,12 +190,12 @@ urlpatterns += [
         name='helpdesk_api'),
 
     re_path(r'^login/$',
-        auth_views.login,
+        auth_views.LoginView.as_view(),
         {'template_name': 'helpdesk/registration/login.html'},
         name='login'),
 
     re_path(r'^logout/$',
-        auth_views.logout,
+        auth_views.LogoutView.as_view(),
         {'template_name': 'helpdesk/registration/login.html', 'next_page': '../'},
         name='logout'),
 ]

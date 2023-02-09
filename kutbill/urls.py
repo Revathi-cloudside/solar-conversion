@@ -23,6 +23,7 @@ from website.views import index
 from rest_framework.authtoken import views
 import debug_toolbar
 from dgusers import views as dgviews
+from license import views as lviews
 
 urlpatterns = [ 
     path('admin/', admin.site.urls),
@@ -39,6 +40,11 @@ urlpatterns = [
     path('events/', include('events.urls', namespace="events")),
     path('ioelab/', include('ioelab.urls', namespace="ioelab")),
     # path('reports/', include('reports.urls', namespace="reports")),
+    path('dh/', include('ticketingsystem.urls')),
+    re_path(r'validate/', lviews.validate_signature),
+    re_path(r'add_signature/', lviews.add_signature),
+    re_path(r'delete_signature/', lviews.delete_signature),
+    path('helpdesk/', include('helpdesk.urls')),
     
     
 
