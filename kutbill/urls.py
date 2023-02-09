@@ -14,13 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 
 from django.conf import settings
 from django.conf.urls.static import static
 from organizations.backends import invitation_backend
 from website.views import index
 from rest_framework.authtoken import views
+import debug_toolbar
+from dgusers import views as dgviews
 
 urlpatterns = [ 
     path('admin/', admin.site.urls),
@@ -36,6 +38,8 @@ urlpatterns = [
     path('dataglen/', include('dataglen.urls', namespace="dataglen")),
     path('events/', include('events.urls', namespace="events")),
     path('ioelab/', include('ioelab.urls', namespace="ioelab")),
+    # path('reports/', include('reports.urls', namespace="reports")),
+    
     
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -84,11 +84,17 @@ INSTALLED_APPS = [
     'microgrid',
     'oandmmanager',
     'otp',
+    'dgusers',
+    'features',
+    'dganalysis',
+    'dgcomments',
+    'widgets',
+    'dwebdyn',
 ]
 
 # INSTALLED_APPS = ('django_cassandra_engine',) + INSTALLED_APPS
 SITE_ID = 1
-# COMMENTS_APP = 'dgcomments'
+COMMENTS_APP = 'dgcomments'
 
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = ("/accounts/signup/")
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = ("/dataglen/")
@@ -270,6 +276,188 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Define a router for logging application since we're using a separate database
+#DATABASE_ROUTERS = ['logger.routers.LogRouter',]
+
+'''
+    LOGGING. DIFFERENT HANDLERS FOR BOTH DATAGLEN AND DATASINK+DATAVIZ.
+'''
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    'formatters': {
+        'verbose': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+        'log_message': {
+            'format': '%(message)s'
+        },
+    },
+
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/kutbill/datasink.log',
+            'formatter': 'verbose'
+        },
+        'file_pdf': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/kutbill/file_pdf.log',
+            'formatter': 'verbose'
+        },
+        'file_dataglen': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/kutbill/dataglen.log',
+            'formatter': 'verbose'
+        },
+
+        'file_dataglen_rest': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/kutbill/rest_dataglen.log',
+            'formatter': 'verbose'
+        },
+
+        'file_dataviz': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/kutbill/dataviz.log',
+            'formatter': 'verbose'
+        },
+
+        'file_dataglen_cronjobs': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/kutbill/cronjobs.log',
+            'formatter': 'verbose'
+        },
+
+        'file_dataglen_logging_errors': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/kutbill/log_errors.log',
+            'formatter': 'verbose'
+        },
+
+        'file_dataglen_monitoring_errors': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/kutbill/monitoring_errors.log',
+            'formatter': 'verbose'
+        },
+        'file_dataglen_celery_logs': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/kutbill/celery.log',
+            'formatter': 'verbose'
+        },
+
+        'file_tickets_logs': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/kutbill/tickets.log',
+            'formatter': 'verbose'
+        },
+
+        'widgets_log': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/kutbill/widgets.log',
+            'formatter': 'verbose'
+        },
+
+        'eventsframework_log': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/kutbill/eventsframework.log',
+            'formatter': 'verbose'
+        },
+
+    },
+
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+
+        'django-screamshot': {
+            'handlers': ['file_pdf'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+
+        'datasink.views': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+
+        'datasink.apps': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+
+        'dataglen.views': {
+            'handlers': ['file_dataglen'],
+            'level': 'DEBUG',
+        },
+
+        'dataglen.rest_views': {
+            'handlers': ['file_dataglen_rest'],
+            'level': 'DEBUG',
+        },
+
+        'logger.tasks': {
+            'handlers': ['file_dataglen_logging_errors'],
+            'level': 'DEBUG',
+        },
+
+        'monitoring.views': {
+            'handlers': ['file_dataglen_monitoring_errors'],
+            'level': 'DEBUG',
+        },
+
+        'cronjobs.views': {
+            'handlers': ['file_dataglen_cronjobs'],
+            'level': 'DEBUG',
+        },
+
+        'django_crontab.crontab': {
+            'handlers': ['file_dataglen_cronjobs'],
+            'level': 'DEBUG',
+        },
+
+        'kutbill.worker': {
+            'handlers': ['file_dataglen_celery_logs'],
+            'level': 'DEBUG',
+        },
+
+        'helpdesk.models': {
+            'handlers': ['file_tickets_logs'],
+            'level': 'DEBUG',
+        },
+
+        'widgets.models': {
+            'handlers': ['widgets_log'],
+            'level': 'DEBUG',
+        },
+
+        'eventsframework.views': {
+            'handlers': ['eventsframework_log'],
+            'level': 'DEBUG',
+        },
+
+    }
+}
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
