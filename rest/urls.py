@@ -66,4 +66,3 @@ urlpatterns = [
 
 app_name = 'rest'
 
-
