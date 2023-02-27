@@ -100,7 +100,8 @@ class DataglenClient(Organization):
 
     def __unicode__(self):
         return self.name
-
+    class Meta:
+        verbose_name = "Dataglen client"
 
 class DataglenGroup(Organization):
     groupClient = models.ForeignKey(DataglenClient, on_delete=models.CASCADE, related_name="dataglen_groups")
@@ -123,6 +124,8 @@ class DataglenGroup(Organization):
 
     def __unicode__(self):
         return "_".join([self.name, str(self.groupClient.id)])
+    class Meta:
+        verbose_name = "Dataglen group"
 
 
 
