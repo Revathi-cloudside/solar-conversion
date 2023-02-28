@@ -43,7 +43,7 @@ class DashboardData(EntryPointMixin, AddSensorsMixin,
         return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
     def get(self, request, *args, **kwargs):
-        if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest' is False:
+        if not request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
             return self.render_to_response(self.get_context_data())
         else:
             context = self.get_context_data()
