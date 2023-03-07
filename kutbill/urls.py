@@ -26,9 +26,8 @@ from dgusers import views as dgviews
 from license import views as lviews
 
 urlpatterns = [ 
-    path('admin/', admin.site.urls),
-    #admin utility url
     path('admin/solarrms/utility/', include('solarrms.admin_urls')),
+    path('admin/', admin.site.urls),
     path('', index, name='landing_page'),
     path('web/', include('website.urls', namespace='website')),
     path('dashboards/', include('dashboards.urls', namespace='dashboards')),  
