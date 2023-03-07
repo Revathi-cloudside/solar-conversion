@@ -27,6 +27,8 @@ from license import views as lviews
 
 urlpatterns = [ 
     path('admin/', admin.site.urls),
+    #admin utility url
+    path('admin/solarrms/utility/', include('solarrms.admin_urls')),
     path('', index, name='landing_page'),
     path('web/', include('website.urls', namespace='website')),
     path('dashboards/', include('dashboards.urls', namespace='dashboards')),  
@@ -50,6 +52,4 @@ urlpatterns = [
     re_path(r'delete_signature/', lviews.delete_signature),
     #SWAGGER DOCS
     #path('swagger/', include('rest_framework_swagger.urls')),
-    #admin utility url
-    path('admin/solarrms/utility/', include('solarrms.admin_urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+  ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
