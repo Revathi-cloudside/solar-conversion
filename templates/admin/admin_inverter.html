@@ -2,23 +2,24 @@
 {% load static %}
 {% block extrahead %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+
 <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/>
 <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
 <link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
 
-<script type="text/javascript" src="/admin/jsi18n/"></script>
-<script type="text/javascript" src="/static/admin/js/core.js"></script>
-<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
-<script type="text/javascript" src="/static/admin/js/jquery.js"></script>
-<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
-<script type="text/javascript" src="/static/admin/js/actions.js"></script>
-<script type="text/javascript" src="/static/admin/js/calendar.js"></script>
-<script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
-<script type="text/javascript" src="/static/admin/js/SelectBox.js"></script>
-<script type="text/javascript" src="/static/admin/js/SelectFilter2.js"></script>
+<script type="text/javascript" src="/admin/jsi18n/"></script> 
+<script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/jquery.init.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/core.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script> 
+<script type="text/javascript" src="{% static 'admin/js/actions.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/calendar.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/admin/DateTimeShortcuts.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/SelectBox.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/SelectFilter2.js' %}"></script>
 
 {% endblock %}
-
 {% block breadcrumbs %}
 <div class="breadcrumbs">
 <a href="/admin/">Home</a>
@@ -41,11 +42,10 @@
         </div>
     </form>
     </fieldset>
-
 <script>
-(function($){
-$("#id_solar_plant").prepend("<option value='' selected='selected'>--------------</option>");
-$("#id_solar_group").prepend("<option value='' selected='selected'>--------------</option>");
+jQuery(document).ready(function($) {
+    var $SolarPlant = $("#id_solar_plant").prepend("<option value='' selected='selected'>--------------</option>");
+    var $SolarGroup = $("#id_solar_group").prepend("<option value='' selected='selected'>--------------</option>");
 
 $("#id_solar_plant").on("change", function(){
     $("#id_solar_group").empty()
@@ -58,8 +58,9 @@ $("#id_solar_plant").on("change", function(){
             cache: false,
             success: function(json) {
                 if (json) {
+                    alert(json)
                     for (var gateway in json) {
-                       $("#id_solar_group").prepend("<option value='"+json[gateway].id+"'>"+json[gateway].name+"</option>");
+                       $j("#id_solar_group").prepend("<option value='"+json[gateway].id+"'>"+json[gateway].name+"</option>");
                     }
                 }
             }
