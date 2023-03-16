@@ -211,7 +211,7 @@ def get_solar_plant(request):
     :param request:
     :return:
     """
-    if request.method == "POST" and request.is_ajax():
+    if request.method == "POST" and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         all_plants = SolarPlant.objects.all().values('id', 'name')
         solar_plants = []
         for solar_plant in all_plants:
